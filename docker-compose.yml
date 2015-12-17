@@ -10,4 +10,34 @@ kibana:
 elasticsearch:
   image: elasticsearch:2.1.0
   volumes:
-   - "/esdata"
+    - "/esdata"
+
+lambda:
+  image: node:5.2.0-wheezy
+  ports:
+    - 5055:5055
+  volumes:
+    - "$PWD/lambda:/code"
+  command: node /code/index.js
+  extra_hosts:
+    - "default.docker:192.168.99.100"
+
+logstash:
+  image: logstash:2.1.1
+  ports:
+    - 5065:5065
+  volumes:
+    - "/var/log/messages:/var/log/docker_host_messages"
+    - "$PWD/logstash.conf:/config-dir/logstash.conf:ro"
+  command: logstash -f /config-dir/logstash.conf
+  links:
+    - elasticsearch
+  extra_hosts:
+    - "default.docker:192.168.99.100"
+
+app:
+  container_name: demo-app
+  build: demo
+  log_driver: "syslog"
+  volumes:
+    - "/root/.m2:/root/.m2"
