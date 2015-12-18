@@ -1,0 +1,1 @@
+([:dependencies ([refactor-nrepl "1.1.0"] [cider/cider-nrepl "0.9.1"] [cheshire/cheshire "5.5.0"] [clj-time/clj-time "0.11.0"] [com.taoensso/timbre "4.1.1"] [org.clojure/clojure "1.7.0"] [dire/dire "0.5.3"] [org.clojure/tools.nrepl "0.2.10"] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure])] [alembic/alembic "0.3.2"])])

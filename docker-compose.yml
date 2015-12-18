@@ -5,7 +5,7 @@ kibana:
   links:
     - elasticsearch
   environment:
-    ELASTICSEARCH_URL: http://elasticsearch:9200 
+    ELASTICSEARCH_URL: http://elasticsearch:9200
 
 elasticsearch:
   image: elasticsearch:2.1.0
@@ -37,7 +37,7 @@ logstash:
 
 app:
   container_name: demo-app
-  build: demo
+  build: log-demo
   log_driver: "syslog"
   volumes:
     - "/root/.m2:/root/.m2"
