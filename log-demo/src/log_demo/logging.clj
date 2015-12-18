@@ -34,11 +34,17 @@
 (defn- append-tid [m]
   (if tid (assoc m :tid tid) m))
 
+(comment
+  (format-stacktrace (Exception. "") {}))
+
+(defn- format-stacktrace [err opts]
+  (join "\n" (map str (.getStackTrace err))))
+
 (defn- append-stacktrace* [{:keys [?err_ opts]} m]
   "Returns log event with stacktrace based on the options opts"
   (if-not (:no-stacktrace? opts)
     (when-let [err (force ?err_)]
-      (assoc m :stacktrace (str (timbre/stacktrace err opts))))))
+      (assoc m :stacktrace (str (format-stacktrace err opts))))))
 
 (defn- append-stacktrace [data m]
   (if-let [out-log-with-trace (append-stacktrace* data m)]
