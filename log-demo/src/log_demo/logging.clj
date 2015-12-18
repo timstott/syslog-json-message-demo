@@ -55,7 +55,7 @@
   [{:keys [level ?err_ vargs_ msg_ ?ns-str hostname_ timestamp_ ?line]}]
   {:timestamp @timestamp_
    :host @hostname_
-   :level (upper-case level)
+   :level (upper-case (name level))
    :message @msg_
    :namespace ?ns-str})
 
