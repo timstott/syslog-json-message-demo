@@ -41,3 +41,4 @@ app:
   log_driver: "syslog"
   volumes:
     - "/root/.m2:/root/.m2"
+  restart: always
